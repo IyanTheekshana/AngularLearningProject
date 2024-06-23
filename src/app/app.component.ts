@@ -20,10 +20,7 @@ export class AppComponent {
   }
 
   onSelectedUser(id: string) {
-    let u = this.users.find((user) => { return user.id == id})!;
-    if(u){
-      this.selectedUserId = u.id;
-    }
+    this.selectedUserId = id;
   }
 
 }

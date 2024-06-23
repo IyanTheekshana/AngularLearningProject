@@ -7,5 +7,10 @@
             </li>
         }
     </ul>
-   <app-tasks [name]="SelectedUser ? SelectedUser.name : ''"></app-tasks>
+    @if(SelectedUser){
+        <app-tasks [name]="SelectedUser.name"></app-tasks>
+    }
+    @else{
+        <p class="fallback">Select an user to see their tasks.</p>
+    }
 </main>
