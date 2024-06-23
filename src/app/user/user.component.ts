@@ -1,4 +1,4 @@
-import { Component, computed,input, output } from '@angular/core';
+import { Component, Input, computed,input, output } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -9,18 +9,15 @@ import { Component, computed,input, output } from '@angular/core';
 })
 export class UserComponent {
  
-//USING SIGNALS: INPUT
-id = input.required<string>();
-avatar = input.required<string>();
-name = input.required<string>();
+@Input({required:true}) user!:{id: string, avatar: string, name: string};
 
-imagePath = computed(()=>'assets/users/'+ this.avatar() );
+imagePath = computed(()=>'assets/users/'+ this.user.avatar);
 
 //USING SIGNALS: OUTPUT
 select = output<string>();
 
 onSelectedUser() {
-  this.select.emit(this.id());
+  this.select.emit(this.user.id);
 }
 
 }

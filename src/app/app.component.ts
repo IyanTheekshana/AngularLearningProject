@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { DUMMY_USERS } from './dummy-users';
@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   onSelectedUser(id: string) {
-    return this.users.find(u => u.id == id)!;
+    return this.users.find((user) => { return user.id == id})!;
   }
 
 }
