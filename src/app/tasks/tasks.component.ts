@@ -1,5 +1,14 @@
 import { Component, input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
+import { dummyTasks } from './dummy-tasks';
+
+export type Task = {
+  id: string;
+  userId: string;
+  title: string;
+  summary: string;
+  dueDate: string;
+}
 
 @Component({
     selector: 'app-tasks',
@@ -10,4 +19,6 @@ import { TaskComponent } from "./task/task.component";
 })
 export class TasksComponent {
   name = input<string>();
+
+  tasks: Task[] = dummyTasks;
 }

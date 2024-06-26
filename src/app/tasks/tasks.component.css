@@ -2,7 +2,7 @@
     padding: 1rem;
     border-radius: 8px;
     max-height: 60vh;
-    overflow: auto;
+    overflow-y: scroll;
     background-color: #3a2c54;
   }
   
@@ -30,6 +30,7 @@
     font: inherit;
     cursor: pointer;
     background-color: #9965dd;
+    color:#fff;
     border-radius: 4px;
     border: none;
     padding: 0.35rem 0.8rem;
@@ -60,4 +61,14 @@
     menu {
       width: auto;
     }
+
+    #tasks {
+      overflow: none;
+      max-height: 70vh;
+    }
+
+    ul {
+      max-height: 50%;
+    }
   }
+
