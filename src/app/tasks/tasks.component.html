@@ -1,5 +1,9 @@
 @if(isAddTaskActivated){
-<app-add-task (close)="onCloseModel()"></app-add-task>
+<app-add-task
+  [userId]="id()"
+  (close)="onCloseModel()"
+  (add)="onAddTaskToArray($event)"
+></app-add-task>
 }
 <section id="tasks">
   <header>

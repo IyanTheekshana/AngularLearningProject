@@ -32,4 +32,9 @@ export class TasksComponent {
   onAddTask() {
     this.isAddTaskActivated = true;
   }
+
+  onAddTaskToArray(task: Task) {
+    this.tasks.unshift(task);
+    this.onCloseModel();
+  }
 }

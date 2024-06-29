@@ -1,5 +1,6 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Task } from '../task.model';
 
 @Component({
   selector: 'app-add-task',
@@ -9,7 +10,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-task.component.css',
 })
 export class AddTaskComponent {
+  userId = input.required<string>();
   close = output();
+  add = output<Task>();
 
   enteredTitle = signal<string>('');
   enteredSummmery = signal<string>('');
@@ -17,5 +20,16 @@ export class AddTaskComponent {
 
   onCloseAddTAsk() {
     this.close.emit();
+  }
+
+  onSubmit() {
+    let newTask: Task = {
+      id: new Date().getTime().toString(),
+      userId: this.userId(),
+      title: this.enteredTitle(),
+      summary: this.enteredSummmery(),
+      dueDate: this.enteredDate(),
+    };
+    this.add.emit(newTask);
   }
 }
