@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { dummyTasks } from './dummy-tasks';
 import { Task } from './task.model';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -15,14 +16,11 @@ export class TasksComponent {
   id = input.required<string>();
   name = input.required<string>();
   isAddTaskActivated: boolean = false;
-  tasks: Task[] = dummyTasks;
+
+  constructor(private seriveTsk: TasksService) {}
 
   get selectedTaskOnUserId() {
-    return this.tasks.filter((task) => task.userId == this.id());
-  }
-
-  onCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+    return this.seriveTsk.getUserTasks(this.id());
   }
 
   onCloseModel() {
@@ -31,10 +29,5 @@ export class TasksComponent {
 
   onAddTask() {
     this.isAddTaskActivated = true;
-  }
-
-  onAddTaskToArray(task: Task) {
-    this.tasks.unshift(task);
-    this.onCloseModel();
   }
 }

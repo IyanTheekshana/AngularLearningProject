@@ -1,6 +1,7 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../task.model';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-add-task',
@@ -12,7 +13,8 @@ import { Task } from '../task.model';
 export class AddTaskComponent {
   userId = input.required<string>();
   close = output();
-  add = output<Task>();
+
+  private serviceTsk = inject(TasksService);
 
   enteredTitle = signal<string>('');
   enteredSummmery = signal<string>('');
@@ -30,6 +32,7 @@ export class AddTaskComponent {
       summary: this.enteredSummmery(),
       dueDate: this.enteredDate(),
     };
-    this.add.emit(newTask);
+    this.serviceTsk.addTask(newTask);
+    this.close.emit();
   }
 }
